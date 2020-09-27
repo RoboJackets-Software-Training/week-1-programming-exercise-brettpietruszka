@@ -7,12 +7,16 @@ int main()
 
     // Input vector from command-line
     std::vector<int> list;
+
+
     int input = 0;
     std::cout << "Input List Of Numbers (end list with non-integer):" << std::endl;
     while (std::cin >> input)
     {
         list.push_back(input);
     }
+
+
 
     // Print original vector
     std::cout << "Original Vector: ";
@@ -24,6 +28,18 @@ int main()
 
     // Reverse Vector
     // WRITE YOUR VECTOR REVERSAL HERE
+    int start = 0;
+    int end = list.size() - 1;
+    while (start < end) {
+        std::cout << list[start];
+        int temp = list[start];
+        list[start] = list[end];
+        list[end] = temp;
+        std::cout << " " <<  temp << "\n";
+
+        ++start;
+        --end;
+    }
 
     // Print the Reversed vector
     std::cout << "Reversed Vector: ";

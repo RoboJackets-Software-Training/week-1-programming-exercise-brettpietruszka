@@ -37,7 +37,45 @@ int main() {
 
   // TODO write your code here
   // =========== START =========
+  int original_size = x.size();
 
+  // If packing is desired, then pack
+  if (pack_with_zeros) {
+    x.resize(x.size() + (w.size()-1));
+    std::rotate(x.begin(), x.begin() + x.size() - (w.size()-1)/2, x.end());
+  }
+
+  // Print out the new vectors to convolute
+  std::cout << "x = [" << x[0];
+  for (int i = 1; i < x.size(); ++i) {
+    std::cout << ", " << x[i];
+  }
+  std::cout << "]\n";
+
+  std::cout << "w = [" << w[0];
+  for (int i = 1; i < w.size(); ++i) {
+    std::cout << ", " << w[i];
+  }
+  std::cout << "]\n";
+
+  // Do the convolution
+  for (int i = 0; pack_with_zeros ? i < original_size : 
+        i < original_size - w.size() + 1; ++i) {
+      int sum = 0;
+      for (int j = 0; j < w.size(); ++j) {
+        sum += x[i + j] * w[j];
+      }
+      y.push_back(sum);
+
+  }
+
+  // Print out the output vector
+  std::cout << "[" << y[0];
+  for (int i = 1; i < y.size(); ++i) {
+    std::cout << ", " << y[i];
+  }
+  std::cout << "]\n";
+  
 
 
 
